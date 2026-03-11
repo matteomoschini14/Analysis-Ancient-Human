@@ -1,6 +1,6 @@
 # Mapping
-The table that contains all the information from where I started is: 
-First of all, i created a txt file: Scheibmap.txt wich every row is composed by the fastq.gz file, the ID name and the pathway where the file is found.
+The table that contains all the information from where I started is: [filereport_read_run_PRJEB52707_tsv.txt](./filereport_read_run_PRJEB52707_tsv.txt)
+First of all, i created a txt file: [Scheibmap.txt](./Scheibmap.txt) wich every row is composed by the fastq.gz file, the ID name and the pathway where the file is found.
 Every sequencing has 30 of mapping quality and single-end.
 
 ```bash
