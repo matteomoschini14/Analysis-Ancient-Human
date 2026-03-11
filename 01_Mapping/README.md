@@ -117,6 +117,8 @@ $LINE
 sbatch index1.array.sh
 ```
 ## Delete Deduplicate
+Now i need to delete the deduplication in my reads, in order to not altering the coverage. 
+
 ```bash
 grep 'picard MarkDuplicates' temp/Scheibmap.txt.log | perl -pe 's/picard/java -jar \/projects\/mjolnir1\/people\/clx746\/Scripts\/picard\/picard.jar/g;' >dedup.sh
 
@@ -134,6 +136,8 @@ $LINE
 sbatch dedup.array.sh
 ```
 ## 2° index
+After elimante the duplication, create a new index
+
 ```bash
 grep 'samtools index' temp/Scheibmap.txt.log |grep dedup > index2.sh
 
@@ -152,7 +156,8 @@ $LINE
 
 sbatch index2.array.sh
 ```
-
+## Realign
+This script need to realign sequences with insertions or deletions, i.g region that mismatch with the reference.
 ```bash
 grep 'RealignerTargetCreator' temp/Scheibmap.txt.log | perl -pe 's/GenomeAnalysisTK/gatk3/g;'  > raln.create.sh
 
@@ -174,7 +179,7 @@ $LINE
 
 sbatch raln.create.array.sh
 ```
-## Optimization
+
 ```bash
 grep 'IndelRealigner' temp/Scheibmap.txt.log | perl -pe 's/GenomeAnalysisTK/gatk3/g;'  > raln.sh
 
@@ -198,6 +203,8 @@ $LINE
 sbatch raln.array.sh
 ```
 ## Ricalibration
+The last step has the purpose to tag the mismatch with the reference with a tag MD
+
 ```bash
 grep 'fillmd' temp/Scheibmap.txt.log   > fillmd.sh
 
@@ -216,3 +223,4 @@ $LINE
 
 sbatch fillmd.array.sh
 ```
+At the end I obtain files final.bam, so the final files of alignment to a reference genome.
