@@ -202,7 +202,7 @@ $LINE
 
 sbatch raln.array.sh
 ```
-## Ricalibration
+## Recalibration
 The last step has the purpose to tag the mismatch with the reference with a tag MD
 
 ```bash
