@@ -82,10 +82,22 @@ Now I escluded all the missnp from my dataset
 ls *haplo.bim |while read l; do s=$(echo $l |perl -pe 's/.haplo.bim//g;'); plink --bfile $s.haplo --exclude neo.$s-merge.missnp --allow-no-sex --make-bed --out $s.notri; done
 ```
 The output will be files as .notri.bed/bim/fam
-Now it is usefull to merge my file per individuals, the file ml contain for every row the files .notri.bed .notri.fam and .notri.bim for every individuls.
+Now it is usefull to merge my file per individuals, the file ml contain in every row the files .notri.bed .notri.fam and .notri.bim for every individuls.
+
 To create a genetic matrix, so to concatenate the individuals in one big file, the script is:
 
 ```bash
 plink --merge-list ml --make-bed --allow-no-sex --out  ancient.haplo.notri
 ```
 The file is ancient.haplo.notri.
+This must to be merged with the initial panel neo.impute.ho.20210824.haploid and the resultant file will be neo.ancient.haplo
+
+```bash
+plink --bfile /projects/mjolnir1/people/clx746/Romans/imputed/HG37/neo.impute.ho.20210824.haploid --bmerge ancient.haplo.notri --allow-no-sex --make-bed --out neo.ancient.haplo
+```
+
+This script add new samples to neo.ancient.haplo and the final ancient dataset is renamed ancient.merge
+
+```bash
+plink --bfile /projects/mjolnir1/people/jrx808/scheib/PCA/neo.ancient.haplo --bmerge ancient.haplo.notri --make-bed --out ancient.merge --allow-no-sex
+```
