@@ -1,6 +1,6 @@
 ## Create the Dataset
 In order to performe a PCA, from my dataset ancient.merge I created a subset in wich I included the individuals in ancient.haplo.notri. The final subset in written inside ind2keep.txt
-You can find the file here: [ind2keep.txt](./ind2keep)
+You can find the file here: [inds2keep.txt](./inds2keep.txt)
 
 ```bash
 cat <(cat /projects/mjolnir1/people/clx746/Romans/imputed/HG37/mesoneo.msd.inds2keep.txt) <(cut -f 1,2 ancient.haplo.notri.fam) > inds2keep.txt
