@@ -16,6 +16,8 @@ sbatch getDoc.sh
 
 All the .doc file are assembled in one file .txt using R
 
+The resultant table is here [Avg_doc.txt](./Avg_doc.txt)
+
 ```bash
 files<-dir(pattern="doc$")
 
